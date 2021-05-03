@@ -3,6 +3,7 @@ package kz.urbanl.urbanlogistics.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "photo")
@@ -15,8 +16,11 @@ public class Photo {
 
     private String photo;
 
-    @ManyToOne
-    @JoinColumn(name = "photo_details_id", insertable = false, updatable = false)
-    private PhotoDetails photoDetails;
+    @OneToMany
+    @JoinColumn(name = "photo_details_id")
+    private List<PhotoDetails> photoDetails;
 
+//    @ManyToOne
+//    @JoinColumn(name = "order_id", insertable = false, updatable = false)
+//    private Order order;
 }

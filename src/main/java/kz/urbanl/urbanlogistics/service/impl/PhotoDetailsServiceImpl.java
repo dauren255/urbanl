@@ -43,9 +43,9 @@ public class PhotoDetailsServiceImpl implements PhotoDetailsService {
     }
 
     @Override
-    public void addPhotoToPhotoDetails(Long id, Photo photo) {
-        PhotoDetails photoDetails = photoDetailsRepo.findById(id).get();
-        photoDetails.getPhoto().add(photo);
+    public void addPhotoDetailsToPhoto(Long id, PhotoDetails photoDetails) {
+        Photo photo = photoRepo.findById(id).get();
+        photo.getPhotoDetails().add(photoDetails);
     }
 
     @Override

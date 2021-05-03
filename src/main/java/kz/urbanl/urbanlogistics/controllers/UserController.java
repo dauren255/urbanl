@@ -1,6 +1,5 @@
 package kz.urbanl.urbanlogistics.controllers;
 
-import kz.urbanl.urbanlogistics.config.SecurityConfig;
 import kz.urbanl.urbanlogistics.model.CardData;
 import kz.urbanl.urbanlogistics.model.User;
 import kz.urbanl.urbanlogistics.service.impl.UserServiceImpl;
@@ -9,10 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping(value = "/user")
 public class UserController extends CommonService {
 
     @Autowired
@@ -49,8 +47,8 @@ public class UserController extends CommonService {
         return builder(success("Successfully deleted"));
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public ResponseEntity<?> addCardDataUser(@RequestParam Long userId, @RequestBody CardData cardData){
+    @RequestMapping(value = "/{userId}/addCart", method = RequestMethod.PUT)
+    public ResponseEntity<?> addCardDataUser(@PathVariable Long userId, @RequestBody CardData cardData){
         return builder(success(userService.addCardData(userId, cardData)));
     }
 }

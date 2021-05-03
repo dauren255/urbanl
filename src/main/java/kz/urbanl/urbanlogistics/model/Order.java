@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -40,8 +41,8 @@ public class Order {
 
     private Double rating;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "order_photo_details_id", referencedColumnName = "photo_details_id")
-    private PhotoDetails photoDetails;
+    @OneToMany
+    @JoinColumn(name = "photo_id")
+    private List<Photo> photos;
 
 }

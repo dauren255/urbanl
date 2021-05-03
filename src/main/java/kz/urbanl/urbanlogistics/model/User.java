@@ -39,9 +39,9 @@ public class User implements UserDetails {
 
     private String phoneNumber;
 
-    @OneToMany
-    @JoinColumn(name = "card_data_id")
-    private List<CardData> cardDataList;
+//    @OneToMany
+//    @JoinColumn(name = "card_data_id")
+//    private List<CardData> cardDataList;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

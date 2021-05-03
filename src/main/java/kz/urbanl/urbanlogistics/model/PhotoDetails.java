@@ -14,9 +14,9 @@ public class PhotoDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany
-    @JoinColumn(name = "photo_id")
-    private List<Photo> photo;
+//    @ManyToOne
+//    @JoinColumn(name = "photo_id", insertable = false, updatable = false)
+//    private Photo photo;
 
     private Integer weight;
     private Integer length;

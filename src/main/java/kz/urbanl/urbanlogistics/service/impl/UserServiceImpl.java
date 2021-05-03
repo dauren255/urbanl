@@ -77,7 +77,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User addCardData(Long userId, CardData cardData) {
         User user = userRepo.findById(userId).get();
-        user.getCardDataList().add(cardData);
+        cardData.setUser(user);
+//        user.getCardDataList().add(cardData);
+        cardDataRepo.saveAndFlush(cardData);
         return userRepo.saveAndFlush(user);
     }
 }

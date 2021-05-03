@@ -15,7 +15,7 @@ public interface PhotoDetailsService {
 
     PhotoDetails updatePhotoDetails(PhotoDetails photoDetails) throws InternalException;
 
-    void addPhotoToPhotoDetails(Long id, Photo photo);
+    void addPhotoDetailsToPhoto(Long id, PhotoDetails photoDetails);
 
     void deletePhotoDetails(PhotoDetails photoDetails) throws InternalException;
 }

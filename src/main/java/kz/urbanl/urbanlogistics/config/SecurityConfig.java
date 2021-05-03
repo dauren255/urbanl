@@ -22,7 +22,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/auth/**", "/user/create").permitAll()
+                .antMatchers("/auth/**").permitAll()
+                .antMatchers("/company/all").permitAll()
+                .antMatchers("/user/create").permitAll()
+                .antMatchers("/user/all").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JwtTokenGeneratorFilter(authenticationManager()))
