@@ -55,6 +55,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void deleteOrder(Order order) throws InternalException {
-        orderRepo.delete(order);
+        Order deletedOrder = orderRepo.findById(order.getId()).get();
+        orderRepo.delete(deletedOrder);
     }
 }
