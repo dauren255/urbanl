@@ -4,6 +4,7 @@ import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
 import kz.urbanl.urbanlogistics.model.Order;
 import kz.urbanl.urbanlogistics.model.User;
 import kz.urbanl.urbanlogistics.repository.LocationRepo;
+import kz.urbanl.urbanlogistics.repository.MoverRepo;
 import kz.urbanl.urbanlogistics.repository.OrderRepo;
 import kz.urbanl.urbanlogistics.repository.UserRepo;
 import kz.urbanl.urbanlogistics.service.OrderService;
@@ -21,6 +22,8 @@ public class OrderServiceImpl implements OrderService {
     private LocationRepo locationRepo;
     @Autowired
     private UserRepo userRepo;
+    @Autowired
+    private MoverRepo moverRepo;
     @Override
     public Order createOrder(Order order) throws InternalException {
         order.setUser(userRepo.findById(order.getUser().getId()).get());
@@ -40,6 +43,13 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order updateOrder(Order order) throws InternalException {
         Order updateOrder = orderRepo.findById(order.getId()).get();
+        updateOrder.setArrivalPlace(order.getArrivalPlace());
+        updateOrder.setDestinationPlace(order.getDestinationPlace());
+        updateOrder.setMover(moverRepo.findById(order.getMover().getId()).get());
+        updateOrder.setStatus(order.getStatus());
+        updateOrder.setRating(order.getRating());
+        updateOrder.setEndDate(order.getEndDate());
+        updateOrder.setPhotos(order.getPhotos());
         return orderRepo.saveAndFlush(updateOrder);
     }
 
