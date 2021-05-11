@@ -45,7 +45,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public void deleteCompany(Company company) throws InternalException {
-        companyRepo.delete(company);
+        companyRepo.delete(companyRepo.findById(company.getId()).get());
     }
 
     @Override
