@@ -20,5 +20,5 @@ public interface UserService {
 
     User authenticate(String username, String password);
 
-    User addCardData(Long userId, CardData cardData);
+    CardData addCardData(Long userId, CardData cardData);
 }
