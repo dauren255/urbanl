@@ -39,6 +39,7 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public Company updateCompany(Company company) throws InternalException {
         Company updateCompany = companyRepo.findById(company.getId()).get();
+        updateCompany.setName(company.getName());
         return companyRepo.saveAndFlush(updateCompany);
     }
 
