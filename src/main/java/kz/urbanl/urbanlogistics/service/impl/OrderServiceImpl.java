@@ -45,11 +45,11 @@ public class OrderServiceImpl implements OrderService {
         Order updateOrder = orderRepo.findById(order.getId()).get();
         updateOrder.setArrivalPlace(order.getArrivalPlace());
         updateOrder.setDestinationPlace(order.getDestinationPlace());
-        updateOrder.setMover(moverRepo.findById(order.getMover().getId()).get());
+//        updateOrder.setMover(moverRepo.findById(order.getMover().getId()).get());
         updateOrder.setStatus(order.getStatus());
         updateOrder.setRating(order.getRating());
         updateOrder.setEndDate(order.getEndDate());
-        updateOrder.setPhotos(order.getPhotos());
+//        updateOrder.setPhotos(order.getPhotos());
         return orderRepo.saveAndFlush(updateOrder);
     }
 
