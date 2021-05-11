@@ -55,9 +55,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public User updateUser(User user) throws InternalException {
         User updateClient = userRepo.findByUsernameIgnoreCase(user.getUsername());
         updateClient.setName(user.getName());
-        updateClient.setName(user.getSurname());
-        updateClient.setName(user.getEmail());
-        updateClient.setName(user.getPhoneNumber());
+        updateClient.setSurname(user.getSurname());
+        updateClient.setEmail(user.getEmail());
+        updateClient.setPhoneNumber(user.getPhoneNumber());
         return userRepo.saveAndFlush(updateClient);
     }
 
