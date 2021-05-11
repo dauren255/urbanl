@@ -50,8 +50,9 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public void addMoverToCompany(Long companyId, Mover mover) throws InternalException {
+        Mover savedMover = moverRepo.saveAndFlush(mover);
         Company company = companyRepo.findById(companyId).get();
-        company.getMovers().add(mover);
+        company.getMovers().add(savedMover);
         companyRepo.save(company);
     }
 }
