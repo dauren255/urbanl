@@ -59,7 +59,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public void deleteUser(User user) throws InternalException {
-        userRepo.delete(user);
+        User newUser = userRepo.findByUsernameIgnoreCase(user.getUsername());
+        userRepo.delete(newUser);
     }
 
     @Override
@@ -71,7 +72,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepo.findByUsernameIgnoreCase(username);
         if (user == null) {
-            throw new UsernameNotFoundException("User not found");
+            return null;
         }
         return user;
     }
