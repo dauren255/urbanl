@@ -12,7 +12,7 @@
     <artifactId>urbanlogistics</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>urbanlogistics</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Project for Spring Boot about Urban Logistics</description>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-cloud.version>Hoxton.SR1</spring-cloud.version>
