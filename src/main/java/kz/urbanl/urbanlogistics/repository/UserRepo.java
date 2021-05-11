@@ -10,7 +10,4 @@ import java.util.List;
 @Repository
 public interface UserRepo extends JpaRepository<User, Long> {
     User findByUsernameIgnoreCase(String name);
-    List<User> findAllByStatus(Status status);
-    User findUserById(Long id);
-    List<User> findAllByAccountNonExpired(boolean accountNonExpired);
 }
