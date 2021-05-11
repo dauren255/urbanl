@@ -1,5 +1,5 @@
 package kz.urbanl.urbanlogistics.model;
 
 public enum Status {
-    INACTIVE, ACTIVE
+    INACTIVE, ACTIVE, ALREADY_HAVE
 }

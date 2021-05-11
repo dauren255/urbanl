@@ -1,12 +1,15 @@
 package kz.urbanl.urbanlogistics.controllers;
 
 import kz.urbanl.urbanlogistics.model.CardData;
+import kz.urbanl.urbanlogistics.model.Status;
 import kz.urbanl.urbanlogistics.model.User;
 import kz.urbanl.urbanlogistics.service.impl.UserServiceImpl;
 import kz.urbanl.urbanlogistics.utils.CommonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.annotation.ServletSecurity;
 
 
 @RestController
@@ -23,6 +26,9 @@ public class UserController extends CommonService {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ResponseEntity<?> createUser(@RequestBody User user){
+        if(userService.loadUserByUsername(user.getUsername()) != null){
+            return builder(errorWithDescription(Status.ALREADY_HAVE, "Account already have"));
+        }
         return builder(success(userService.createUser(user)));
     }
 
