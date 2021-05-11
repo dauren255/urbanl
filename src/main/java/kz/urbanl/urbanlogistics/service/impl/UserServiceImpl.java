@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public User updateUser(User user) throws InternalException {
-        User updateClient = userRepo.findById(user.getId()).get();
+        User updateClient = userRepo.findByUsernameIgnoreCase(user.getUsername());
         return userRepo.saveAndFlush(updateClient);
     }
 
