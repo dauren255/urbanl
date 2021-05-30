@@ -26,6 +26,10 @@ public class User implements UserDetails {
 
     private String surname;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "company_id")
+    private Company company;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
                 joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},

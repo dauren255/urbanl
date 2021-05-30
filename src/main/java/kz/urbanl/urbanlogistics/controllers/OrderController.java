@@ -23,6 +23,11 @@ public class OrderController extends CommonService {
         return builder(success(orderService.getAllOrders()));
     }
 
+    @RequestMapping(value = "/allByCompany", method = RequestMethod.GET)
+    public ResponseEntity<?> getAllOrdersByCompany(@RequestParam Long id){
+        return builder(success(orderService.getAllOrdersByCompany(id)));
+    }
+
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ResponseEntity<?> createOrder(@RequestBody Order order){
         return builder(success(orderService.createOrder(order)));

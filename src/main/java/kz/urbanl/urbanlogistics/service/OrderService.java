@@ -15,4 +15,6 @@ public interface OrderService {
     Order updateOrder(Order order) throws InternalException;
 
     void deleteOrder(Order order) throws InternalException;
+
+    List<Order> getAllOrdersByCompany(Long id);
 }

@@ -24,7 +24,7 @@ public class Mover {
 
     private Double rating;
 
-//    @ManyToOne
-//    @JoinColumn(name = "company_id", insertable = false, updatable = false)
-//    private Company company;
+    @ManyToOne
+    @JoinColumn(name = "company_id", insertable = false, updatable = false)
+    private Company company;
 }

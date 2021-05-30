@@ -3,10 +3,7 @@ package kz.urbanl.urbanlogistics.service.impl;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
 import kz.urbanl.urbanlogistics.model.Order;
 import kz.urbanl.urbanlogistics.model.User;
-import kz.urbanl.urbanlogistics.repository.LocationRepo;
-import kz.urbanl.urbanlogistics.repository.MoverRepo;
-import kz.urbanl.urbanlogistics.repository.OrderRepo;
-import kz.urbanl.urbanlogistics.repository.UserRepo;
+import kz.urbanl.urbanlogistics.repository.*;
 import kz.urbanl.urbanlogistics.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,11 +16,9 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderRepo orderRepo;
     @Autowired
-    private LocationRepo locationRepo;
+    private CompanyRepo companyRepo;
     @Autowired
     private UserRepo userRepo;
-    @Autowired
-    private MoverRepo moverRepo;
     @Override
     public Order createOrder(Order order) throws InternalException {
         order.setUser(userRepo.findById(order.getUser().getId()).get());
@@ -57,5 +52,10 @@ public class OrderServiceImpl implements OrderService {
     public void deleteOrder(Order order) throws InternalException {
         Order deletedOrder = orderRepo.findById(order.getId()).get();
         orderRepo.delete(deletedOrder);
+    }
+
+    @Override
+    public List<Order> getAllOrdersByCompany(Long id) {
+        return orderRepo.findAllByCompany(companyRepo.findById(id).get());
     }
 }

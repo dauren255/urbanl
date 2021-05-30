@@ -18,8 +18,8 @@ public class Company {
 
     private String logo;
 
-    @OneToMany
-    @JoinColumn(name = "mover_id")
-    private List<Mover> movers;
+//    @OneToMany
+//    @JoinColumn(name = "mover_id")
+//    private List<Mover> movers;
 
 }

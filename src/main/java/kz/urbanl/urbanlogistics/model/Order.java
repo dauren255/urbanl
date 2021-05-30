@@ -16,6 +16,10 @@ public class Order {
     private Long id;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "company_id")
+    private Company company;
+
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "mover_id")
     private Mover mover;
 
