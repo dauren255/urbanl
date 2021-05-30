@@ -16,5 +16,5 @@ public interface OrderService {
 
     void deleteOrder(Order order) throws InternalException;
 
-    List<Order> getAllOrdersByCompany(Long id);
+    List<Order> getAllOrdersByCompany(String username);
 }

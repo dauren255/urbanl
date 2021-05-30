@@ -55,7 +55,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getAllOrdersByCompany(Long id) {
-        return orderRepo.findAllByCompany(companyRepo.findById(id).get());
+    public List<Order> getAllOrdersByCompany(String username) {
+        User user = userRepo.findByUsernameIgnoreCase(username);
+        return orderRepo.findAllByCompany(user.getCompany());
     }
 }

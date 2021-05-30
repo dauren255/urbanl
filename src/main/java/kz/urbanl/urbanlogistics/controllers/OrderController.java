@@ -24,8 +24,8 @@ public class OrderController extends CommonService {
     }
 
     @RequestMapping(value = "/allByCompany", method = RequestMethod.GET)
-    public ResponseEntity<?> getAllOrdersByCompany(@RequestParam Long id){
-        return builder(success(orderService.getAllOrdersByCompany(id)));
+    public ResponseEntity<?> getAllOrdersByCompany(@RequestParam String username){
+        return builder(success(orderService.getAllOrdersByCompany(username)));
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
