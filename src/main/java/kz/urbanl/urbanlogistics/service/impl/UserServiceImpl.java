@@ -1,15 +1,10 @@
 package kz.urbanl.urbanlogistics.service.impl;
 
 import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
-import kz.urbanl.urbanlogistics.model.CardData;
-import kz.urbanl.urbanlogistics.model.Status;
-import kz.urbanl.urbanlogistics.model.User;
-import kz.urbanl.urbanlogistics.repository.CardDataRepo;
-import kz.urbanl.urbanlogistics.repository.UserRepo;
-import kz.urbanl.urbanlogistics.repository.UserRoleRepo;
+import kz.urbanl.urbanlogistics.model.*;
+import kz.urbanl.urbanlogistics.repository.*;
 import kz.urbanl.urbanlogistics.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -23,6 +18,9 @@ import java.util.List;
 public class UserServiceImpl implements UserService, UserDetailsService {
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired
+    private MoverRepo moverRepo;
 
     @Autowired
     private UserRoleRepo userRoleRepo;
@@ -44,6 +42,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public List<User> getAllUsers() throws InternalException {
         return userRepo.findAll();
+    }
+
+    @Override
+    public List<Mover> getAllMovers(String username) throws InternalException {
+        return moverRepo.findAllByCompany(userRepo.findByUsernameIgnoreCase(username).getCompany());
+    }
+
+    @Override
+    public Mover createMover(Mover mover) throws InternalException{
+        return moverRepo.saveAndFlush(mover);
     }
 
     @Override
@@ -81,6 +89,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return user;
     }
 
+    @Override
+    public Mover loadMoverByUsername(String username) {
+        Mover mover = moverRepo.findByUsernameIgnoreCase(username);
+        if (mover == null) {
+            return null;
+        }
+        return mover;
+    }
     @Override
     public CardData addCardData(Long userId, CardData cardData) {
         User user = userRepo.findById(userId).get();

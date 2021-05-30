@@ -17,4 +17,10 @@ public interface OrderService {
     void deleteOrder(Order order) throws InternalException;
 
     List<Order> getAllOrdersByCompany(String username);
+
+    List<Order> getAllOrdersByCompanyInactive(String username);
+
+    Order setWorked(Long id, String username, Long moverId);
+
+    Order finish(Long id);
 }

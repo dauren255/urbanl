@@ -28,9 +28,24 @@ public class OrderController extends CommonService {
         return builder(success(orderService.getAllOrdersByCompany(username)));
     }
 
+    @RequestMapping(value = "/allByCompanyInactive", method = RequestMethod.GET)
+    public ResponseEntity<?> getAllOrdersByCompanyInactive(@RequestParam String username){
+        return builder(success(orderService.getAllOrdersByCompanyInactive(username)));
+    }
+
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ResponseEntity<?> createOrder(@RequestBody Order order){
         return builder(success(orderService.createOrder(order)));
+    }
+
+    @RequestMapping(value = "/setWorked", method = RequestMethod.POST)
+    public ResponseEntity<?> setWorked(@RequestParam Long id, @RequestParam String username, @RequestParam Long moverId){
+        return builder(success(orderService.setWorked(id, username, moverId)));
+    }
+
+    @RequestMapping(value = "/finish", method = RequestMethod.POST)
+    public ResponseEntity<?> finish(@RequestParam Long id){
+        return builder(success(orderService.finish(id)));
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)

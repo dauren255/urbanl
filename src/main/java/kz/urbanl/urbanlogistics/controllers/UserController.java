@@ -1,6 +1,7 @@
 package kz.urbanl.urbanlogistics.controllers;
 
 import kz.urbanl.urbanlogistics.model.CardData;
+import kz.urbanl.urbanlogistics.model.Mover;
 import kz.urbanl.urbanlogistics.model.Status;
 import kz.urbanl.urbanlogistics.model.User;
 import kz.urbanl.urbanlogistics.service.impl.UserServiceImpl;
@@ -45,6 +46,19 @@ public class UserController extends CommonService {
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ResponseEntity<?> findAllUsers(){
         return builder(success(userService.getAllUsers()));
+    }
+
+    @RequestMapping(value = "/allMoverByCompany", method = RequestMethod.GET)
+    public ResponseEntity<?> findAllMoverByCompany(@RequestParam String username){
+        return builder(success(userService.getAllMovers(username)));
+    }
+
+    @RequestMapping(value = "/createMover", method = RequestMethod.POST)
+    public ResponseEntity<?> createMover(@RequestBody Mover mover){
+        if(userService.loadMoverByUsername(mover.getUsername()) != null){
+            return builder(errorWithDescription(Status.ALREADY_HAVE, "Account already have"));
+        }
+        return builder(success(userService.createMover(mover)));
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
