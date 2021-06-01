@@ -20,6 +20,19 @@ public class UserController extends CommonService {
     @Autowired
     private UserServiceImpl userService;
 
+
+    @RequestMapping(value = "/crit", method = RequestMethod.GET)
+    public ResponseEntity<?> create(){
+        User user = new User();
+        user.setUsername("daurenb");
+        user.setPassword("daurenb");
+        user.setEmail("dauren.buribekov@gmail.com");
+        user.setStatus(Status.ACTIVE);
+        user.setName("Dauren");
+        user.setSurname("Buribekov");
+        return builder(success(userService.createUser(user)));
+    }
+
     @RequestMapping(value = "/authenticate", method = RequestMethod.GET)
     public ResponseEntity<?> authenticate(@RequestParam String username, @RequestParam String password){
         return builder(success(userService.authenticate(username, password)));

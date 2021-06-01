@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User createUser(User user) throws InternalException {
         user.setStatus(Status.ACTIVE);
-        user.setRoles(Collections.singletonList(userRoleRepo.findById(2L).get()));
+//        user.setRoles(Collections.singletonList(userRoleRepo.findById(2L).get()));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepo.saveAndFlush(user);
     }
