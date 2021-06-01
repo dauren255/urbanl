@@ -18,6 +18,4 @@ public interface CompanyService {
     Company updateCompany(Company company) throws InternalException;
 
     void deleteCompany(Company company) throws InternalException;
-
-    void addMoverToCompany(Long companyId, Mover mover) throws InternalException;
 }

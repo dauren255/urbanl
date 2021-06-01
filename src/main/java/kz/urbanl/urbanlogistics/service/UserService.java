@@ -13,10 +13,6 @@ public interface UserService {
 
     List<User> getAllUsers() throws InternalException;
 
-    List<Mover> getAllMovers(String username) throws InternalException;
-
-    Mover createMover(User user, String username) throws InternalException;
-
     User getUserById(Long id) throws InternalException;
 
     User updateUser(User user) throws InternalException;
@@ -28,8 +24,6 @@ public interface UserService {
     User getUserByUsername(String username);
 
     CardData addCardData(Long userId, CardData cardData);
-
-    Mover updateMover(Mover mover, String username);
 
     User createCompanyAdmin(User user, String username);
 }

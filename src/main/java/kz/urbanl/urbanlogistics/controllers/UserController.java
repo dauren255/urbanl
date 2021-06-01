@@ -48,18 +48,6 @@ public class UserController extends CommonService {
         return builder(success(userService.getAllUsers()));
     }
 
-    @RequestMapping(value = "/allMoverByCompany", method = RequestMethod.GET)
-    public ResponseEntity<?> findAllMoverByCompany(@RequestParam String username){
-        return builder(success(userService.getAllMovers(username)));
-    }
-
-    @RequestMapping(value = "/createMover", method = RequestMethod.POST)
-    public ResponseEntity<?> createMover(@RequestBody User user, @RequestParam String username){
-        if(userService.loadUserByUsername(user.getUsername()) != null){
-            return builder(errorWithDescription(Status.ALREADY_HAVE, "Account already have"));
-        }
-        return builder(success(userService.createMover(user, username)));
-    }
 
     @RequestMapping(value = "/createCompanyAdmin", method = RequestMethod.POST)
     public ResponseEntity<?> createCompanyAdmin(@RequestBody User user, @RequestParam String username){

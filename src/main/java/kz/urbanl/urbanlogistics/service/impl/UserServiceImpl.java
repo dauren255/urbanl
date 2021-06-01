@@ -20,9 +20,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private UserRepo userRepo;
 
     @Autowired
-    private MoverRepo moverRepo;
-
-    @Autowired
     private UserRoleRepo userRoleRepo;
 
     @Autowired
@@ -45,21 +42,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public List<Mover> getAllMovers(String username) throws InternalException {
-        return moverRepo.findAllByCompany(userRepo.findByUsernameIgnoreCase(username).getCompany());
-    }
-
-    @Override
-    public Mover createMover(User user, String username) throws InternalException{
-        user.getRoles().add(userRoleRepo.findById(4L).get());
-        user.setCompany(userRepo.findByUsernameIgnoreCase(username).getCompany());
-        userRepo.saveAndFlush(user);
-        Mover mover = new Mover();
-        mover.setCompany(userRepo.findByUsernameIgnoreCase(username).getCompany());
-        return moverRepo.saveAndFlush(mover);
-    }
-
-    @Override
     public User getUserById(Long id) throws InternalException {
         return userRepo.findById(id).get();
     }
@@ -74,15 +56,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return userRepo.saveAndFlush(updateClient);
     }
 
-    @Override
-    public Mover updateMover(Mover mover, String username) throws InternalException {
-        Mover updateClient = moverRepo.findById(mover.getId()).get();
-        updateClient.setCarData(mover.getCarData());
-        updateClient.setCarName(mover.getCarName());
-        updateClient.setCarNumber(mover.getCarNumber());
-        updateClient.setDriverLicense(mover.getDriverLicense());
-        return moverRepo.saveAndFlush(updateClient);
-    }
 
     @Override
     public void deleteUser(User user) throws InternalException {

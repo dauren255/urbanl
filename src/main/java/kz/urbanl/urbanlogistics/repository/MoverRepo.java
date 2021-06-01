@@ -10,6 +10,4 @@ import java.util.List;
 @Repository
 public interface MoverRepo extends JpaRepository<Mover, Long> {
     List<Mover> findAllByCompany(Company company);
-
-    Mover findByUsernameIgnoreCase(String username);
 }

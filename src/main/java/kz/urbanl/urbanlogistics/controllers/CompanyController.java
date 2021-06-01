@@ -39,10 +39,4 @@ public class CompanyController extends CommonService {
     public ResponseEntity<?> getCompanyById(@PathVariable Long id){
         return builder(success(companyService.getCompanyById(id)));
     }
-
-    @RequestMapping(value = "/{id}/addMover", method = RequestMethod.POST)
-    public ResponseEntity<?> addMoverToCompany(@PathVariable Long id, @RequestBody Mover mover){
-        companyService.addMoverToCompany(id, mover);
-        return builder(success("Successfully added"));
-    }
 }
