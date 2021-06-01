@@ -51,11 +51,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public Mover createMover(User user, String username) throws InternalException{
+        user.getRoles().add(userRoleRepo.findById(4L).get());
         user.setCompany(userRepo.findByUsernameIgnoreCase(username).getCompany());
         userRepo.saveAndFlush(user);
         Mover mover = new Mover();
         mover.setCompany(userRepo.findByUsernameIgnoreCase(username).getCompany());
-        mover.setUser(user);
         return moverRepo.saveAndFlush(mover);
     }
 
@@ -72,6 +72,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         updateClient.setEmail(user.getEmail());
         updateClient.setPhoneNumber(user.getPhoneNumber());
         return userRepo.saveAndFlush(updateClient);
+    }
+
+    @Override
+    public Mover updateMover(Mover mover, String username) throws InternalException {
+        Mover updateClient = moverRepo.findById(mover.getId()).get();
+        updateClient.setCarData(mover.getCarData());
+        updateClient.setCarName(mover.getCarName());
+        updateClient.setCarNumber(mover.getCarNumber());
+        updateClient.setDriverLicense(mover.getDriverLicense());
+        return moverRepo.saveAndFlush(updateClient);
     }
 
     @Override
@@ -109,5 +119,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         cardData.setUser(user);
 //        user.getCardDataList().add(cardData);
         return cardDataRepo.saveAndFlush(cardData);
+    }
+
+    @Override
+    public User createCompanyAdmin(User user, String username) {
+        user.setCompany(userRepo.findByUsernameIgnoreCase(username).getCompany());
+        user.getRoles().add(userRoleRepo.findById(3L).get());
+        return userRepo.saveAndFlush(user);
     }
 }

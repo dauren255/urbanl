@@ -28,4 +28,8 @@ public interface UserService {
     User getUserByUsername(String username);
 
     CardData addCardData(Long userId, CardData cardData);
+
+    Mover updateMover(Mover mover, String username);
+
+    User createCompanyAdmin(User user, String username);
 }

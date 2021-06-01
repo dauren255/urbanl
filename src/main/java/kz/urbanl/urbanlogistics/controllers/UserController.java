@@ -61,6 +61,14 @@ public class UserController extends CommonService {
         return builder(success(userService.createMover(user, username)));
     }
 
+    @RequestMapping(value = "/createCompanyAdmin", method = RequestMethod.POST)
+    public ResponseEntity<?> createCompanyAdmin(@RequestBody User user, @RequestParam String username){
+        if(userService.loadUserByUsername(user.getUsername()) != null){
+            return builder(errorWithDescription(Status.ALREADY_HAVE, "Account already have"));
+        }
+        return builder(success(userService.createCompanyAdmin(user, username)));
+    }
+
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@RequestBody User user){
         userService.deleteUser(user);
