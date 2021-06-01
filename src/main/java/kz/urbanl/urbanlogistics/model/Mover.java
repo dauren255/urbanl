@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "movers")
 @Data
-public class Mover extends User{
+public class Mover {
     @Id
     @Column(name = "mover_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +23,10 @@ public class Mover extends User{
     private Double rating;
 
     private String driverLicense;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private User user;
     
     @ManyToOne
     @JoinColumn(name = "company_id", insertable = false, updatable = false)
