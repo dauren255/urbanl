@@ -54,11 +54,11 @@ public class UserController extends CommonService {
     }
 
     @RequestMapping(value = "/createMover", method = RequestMethod.POST)
-    public ResponseEntity<?> createMover(@RequestBody Mover mover){
-        if(userService.loadMoverByUsername(mover.getUsername()) != null){
+    public ResponseEntity<?> createMover(@RequestBody User user, @RequestParam String username){
+        if(userService.loadUserByUsername(user.getUsername()) != null){
             return builder(errorWithDescription(Status.ALREADY_HAVE, "Account already have"));
         }
-        return builder(success(userService.createMover(mover)));
+        return builder(success(userService.createMover(user, username)));
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)

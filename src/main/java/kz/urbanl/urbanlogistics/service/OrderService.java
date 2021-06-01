@@ -22,5 +22,8 @@ public interface OrderService {
 
     Order setWorked(Long id, String username, Long moverId);
 
-    Order finish(Long id);
+    Order finishByManager(Long id);
+
+    Order finishByMover(Long id);
+
 }

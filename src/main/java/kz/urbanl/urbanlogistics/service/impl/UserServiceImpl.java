@@ -50,7 +50,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public Mover createMover(Mover mover) throws InternalException{
+    public Mover createMover(User user, String username) throws InternalException{
+        user.setCompany(userRepo.findByUsernameIgnoreCase(username).getCompany());
+        userRepo.saveAndFlush(user);
+        Mover mover = new Mover();
+        mover.setCompany(userRepo.findByUsernameIgnoreCase(username).getCompany());
+        mover.setUser(user);
         return moverRepo.saveAndFlush(mover);
     }
 
@@ -90,13 +95,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public Mover loadMoverByUsername(String username) {
-        Mover mover = moverRepo.findByUsernameIgnoreCase(username);
-        if (mover == null) {
+    public User getUserByUsername(String username) {
+        User user = userRepo.findByUsernameIgnoreCase(username);
+        if (user == null) {
             return null;
         }
-        return mover;
+        return user;
     }
+
     @Override
     public CardData addCardData(Long userId, CardData cardData) {
         User user = userRepo.findById(userId).get();

@@ -46,6 +46,14 @@ public class User implements UserDetails {
 //    @JoinColumn(name = "card_data_id")
 //    private List<CardData> cardDataList;
 
+    public Boolean userContainCompanyAdmin(){
+        for(GrantedAuthority role : this.getAuthorities()){
+            if(role.getAuthority().equals("COMPANY_ADMIN")){
+                return true;
+            }
+        }
+        return false;
+    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;

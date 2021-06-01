@@ -78,9 +78,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order finish(Long id) {
+    public Order finishByMover(Long id) {
         Order order = orderRepo.findById(id).get();
-        order.setStatus(Status.INACTIVE);
+        order.setStatus(Status.FINISHED_BY_MOVER);
+        return orderRepo.saveAndFlush(order);
+    }
+
+    @Override
+    public Order finishByManager(Long id) {
+        Order order = orderRepo.findById(id).get();
+        order.setStatus(Status.FINISHED_BY_MANAGER);
         return orderRepo.saveAndFlush(order);
     }
 }

@@ -15,7 +15,7 @@ public interface UserService {
 
     List<Mover> getAllMovers(String username) throws InternalException;
 
-    Mover createMover(Mover mover) throws InternalException;
+    Mover createMover(User user, String username) throws InternalException;
 
     User getUserById(Long id) throws InternalException;
 
@@ -25,7 +25,7 @@ public interface UserService {
 
     User authenticate(String username, String password);
 
-    Mover loadMoverByUsername(String username);
+    User getUserByUsername(String username);
 
     CardData addCardData(Long userId, CardData cardData);
 }

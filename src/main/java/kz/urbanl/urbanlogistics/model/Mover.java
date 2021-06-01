@@ -14,8 +14,6 @@ public class Mover {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String username;
-
     private String carName;
 
     private String carNumber;
@@ -26,6 +24,12 @@ public class Mover {
 
     private Double rating;
 
+    private Status driverLicense;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private User user;
+    
     @ManyToOne
     @JoinColumn(name = "company_id", insertable = false, updatable = false)
     private Company company;
